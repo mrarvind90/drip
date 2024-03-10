@@ -1,10 +1,6 @@
 import type { JSX } from 'react';
 import Link from 'next/link';
 
-import type {
-	StripeCheckoutSession,
-	StripeCheckoutSessionCustomerDetails,
-} from '@/types/stripe';
 import { stripe } from '@/lib/stripe';
 import { CheckoutSession } from '@/components/checkout-session';
 
@@ -18,10 +14,8 @@ export default async function Page({
 	searchParams,
 }: Props): Promise<JSX.Element> {
 	const sessionId: string = searchParams?.session_id ?? '';
-	const checkoutSession: StripeCheckoutSession =
-		await stripe.checkout.sessions.retrieve(sessionId);
-	const customerDetails: StripeCheckoutSessionCustomerDetails | null =
-		checkoutSession?.customer_details;
+	const checkoutSession = await stripe.checkout.sessions.retrieve(sessionId);
+	const customerDetails = checkoutSession?.customer_details;
 
 	return (
 		<main className="grid min-h-full place-items-center px-6 py-24 sm:py-32 lg:px-8">

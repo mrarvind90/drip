@@ -28,12 +28,10 @@ export function ProductInfo({ product }: Props): JSX.Element {
 		// @ts-ignore
 		!!cartDetails[product._id]['product_data']['size'] === selectedSize;
 
-	console.log(cartDetails);
-
 	function addToCart() {
 		const item = {
 			...product,
-			id: `${product._id}-variant-${selectedSize}`,
+			// id: `${product._id}-variant-${selectedSize}`,
 			product_data: {
 				size: selectedSize,
 			},

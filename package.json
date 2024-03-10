@@ -15,11 +15,14 @@
 		"url": "git+ssh://git@github.com/mrarvind90/drip.git"
 	},
 	"keywords": [
+		"vercel",
 		"typescript",
 		"nextjs",
-		"sanity.io",
-		"stripe",
+		"shadcn-ui",
+		"use-shopping-cart",
 		"tailwindcss",
+		"sanity-io",
+		"stripe",
 		"prettier",
 		"eslint"
 	],

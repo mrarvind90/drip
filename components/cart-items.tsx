@@ -28,7 +28,7 @@ export function CartItems(): JSX.Element {
 	}
 
 	function removeCartItem(product: Product): void {
-		removeItem(product.id);
+		removeItem(product._id);
 
 		toast({
 			title: `${product.name} removed`,
@@ -44,7 +44,7 @@ export function CartItems(): JSX.Element {
 		>
 			{cartItems.map((product: CartEntry, productIdx: number) => (
 				<li
-					key={product.id}
+					key={product._id}
 					className="flex py-6 sm:py-10"
 				>
 					<div className="shrink-0">
@@ -104,7 +104,7 @@ export function CartItems(): JSX.Element {
 									value={product.quantity}
 									onChange={(event) =>
 										setItemQuantity(
-											product.id,
+											product._id,
 											Number(event.target.value),
 										)
 									}

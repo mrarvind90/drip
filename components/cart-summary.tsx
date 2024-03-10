@@ -7,13 +7,8 @@ import { formatCurrencyString, useShoppingCart } from 'use-shopping-cart';
 import { Button } from '@/components/ui/button';
 
 export function CartSummary(): JSX.Element {
-	const {
-		formattedTotalPrice,
-		totalPrice,
-		cartDetails,
-		cartCount,
-		redirectToCheckout,
-	} = useShoppingCart();
+	const { totalPrice, cartDetails, cartCount, redirectToCheckout } =
+		useShoppingCart();
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 
 	const isDisabled: boolean = isLoading || cartCount! === 0;
@@ -25,10 +20,14 @@ export function CartSummary(): JSX.Element {
 	async function onCheckout(): Promise<void> {
 		const response: Response = await fetch('/api/checkout', {
 			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
 			body: JSON.stringify(cartDetails),
 		});
 
 		const data = await response.json();
+
 		const result = await redirectToCheckout(data.id);
 
 		if (result?.error) {
@@ -54,7 +53,11 @@ export function CartSummary(): JSX.Element {
 				<div className="flex items-center justify-between">
 					<dt className="text-sm">Subtotal</dt>
 					<dd className="text-sm font-medium">
-						{formattedTotalPrice}
+						{formatCurrencyString({
+							currency: 'USD',
+							value: totalPrice!,
+							language: 'en-US',
+						})}
 					</dd>
 				</div>
 				<div className="flex items-center justify-between border-t border-gray-200 pt-4 dark:border-gray-600">
