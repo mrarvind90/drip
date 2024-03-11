@@ -76,10 +76,14 @@ export function SiteHeader(): JSX.Element | null {
 					<ThemeToggle />
 					{process.env.NODE_ENV === 'development' && (
 						<Link href="/studio">
+							<span className="sr-only">Go to Sanity Studio</span>
 							<Button
 								size="sm"
 								variant="ghost"
 							>
+								<span className="sr-only">
+									Open Sanity Studio
+								</span>
 								<Edit className="h-5 w-5" />
 							</Button>
 						</Link>

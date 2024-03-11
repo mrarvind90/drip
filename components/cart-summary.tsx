@@ -20,14 +20,10 @@ export function CartSummary(): JSX.Element {
 	async function onCheckout(): Promise<void> {
 		const response: Response = await fetch('/api/checkout', {
 			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
 			body: JSON.stringify(cartDetails),
 		});
 
 		const data = await response.json();
-
 		const result = await redirectToCheckout(data.id);
 
 		if (result?.error) {
@@ -86,6 +82,7 @@ export function CartSummary(): JSX.Element {
 
 			<div className="mt-6">
 				<Button
+					type="button"
 					className="w-full"
 					disabled={isDisabled}
 					onClick={onCheckout}

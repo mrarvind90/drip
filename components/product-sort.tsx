@@ -1,6 +1,7 @@
 'use client';
 
-import type { JSX } from 'react';
+import * as React from 'react';
+import { JSX } from 'react';
 import type { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { useRouter } from 'next/navigation';
 import { Filter } from 'lucide-react';
@@ -34,7 +35,10 @@ export function ProductSort(): JSX.Element {
 	return (
 		<div className="flex items-center">
 			<Select onValueChange={(value: string) => router.replace(value)}>
-				<SelectTrigger className="sm:w-[180px]">
+				<SelectTrigger
+					className="sm:w-[180px]"
+					aria-label="Select sort option"
+				>
 					<SelectValue placeholder="Sort By" />
 				</SelectTrigger>
 				<SelectContent>
