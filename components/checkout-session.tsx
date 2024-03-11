@@ -1,6 +1,6 @@
 'use client';
 
-import { JSX, useEffect } from 'react';
+import { useEffect, type JSX } from 'react';
 import { CheckCheck, XCircle } from 'lucide-react';
 import type Stripe from 'stripe';
 import { useShoppingCart } from 'use-shopping-cart';
@@ -14,9 +14,9 @@ export function CheckoutSession({ customerDetails }: Props): JSX.Element {
 
 	useEffect((): void => {
 		if (customerDetails) {
-			clearCart();
+			// TODO: This is a hacky workaround based on https://github.com/dayhaysoos/use-shopping-cart/issues/340
+			setTimeout(() => clearCart(), 100);
 		}
-		/* eslint-disable-next-line */
 	}, [customerDetails]);
 
 	if (!customerDetails) {

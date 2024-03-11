@@ -20,9 +20,10 @@ export function Providers({ children }: Props) {
 	return (
 		<CartProvider
 			currency="USD"
-			shouldPersist
+			shouldPersist={true}
 			cartMode="checkout-session"
 			stripe={process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY as string}
+			persistKey="usc-cart"
 		>
 			<ThemeProvider
 				attribute="class"
