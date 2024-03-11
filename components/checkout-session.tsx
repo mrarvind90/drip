@@ -16,6 +16,7 @@ export function CheckoutSession({ customerDetails }: Props): JSX.Element {
 		if (customerDetails) {
 			clearCart();
 		}
+		/* eslint-disable-next-line */
 	}, [customerDetails]);
 
 	if (!customerDetails) {
