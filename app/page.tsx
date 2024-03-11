@@ -1,4 +1,4 @@
-import { Suspense, type JSX } from 'react';
+import type { JSX } from 'react';
 import { client } from '@/sanity/lib/client';
 import { groq } from 'next-sanity';
 
@@ -47,9 +47,20 @@ export default async function Home({
 	const colorFilter: string = color ? `&& "${color}" in colors` : '';
 
 	// Searching
-	const searchFilter: string = search ? `&& name match ${search}` : '';
+	const searchFilter: string = search ? `&& name match "${search}"` : '';
 
 	const filter: string = `*[${type} ${categoryFilter} ${sizeFilter} ${colorFilter} ${searchFilter}]`;
+	console.log(`${filter} ${order} {
+			_id,
+			_createdAt,
+			name,
+			sku,
+			images,
+			currency,
+			price,
+			description,
+			"slug": slug.current
+		}`);
 
 	const products: SanityProduct[] = await client.fetch<SanityProduct[]>(
 		groq`${filter} ${order} {
@@ -83,9 +94,8 @@ export default async function Home({
 							{products.length === 1 ? '' : 's'}
 						</h1>
 						{/* Product Sort */}
-						<Suspense>
-							<ProductSort />
-						</Suspense>
+
+						<ProductSort />
 					</div>
 
 					<section
@@ -108,9 +118,7 @@ export default async function Home({
 						>
 							<div className="hidden lg:block">
 								{/* Product filters */}
-								<Suspense>
-									<ProductFilters />
-								</Suspense>
+								<ProductFilters />
 							</div>
 							{/* Product grid */}
 							<ProductGrid products={products} />

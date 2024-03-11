@@ -1,4 +1,4 @@
-import { Suspense, type JSX } from 'react';
+import type { JSX } from 'react';
 
 import { CartItems } from '@/components/cart-items';
 import { CartSummary } from '@/components/cart-summary';
@@ -23,14 +23,10 @@ export default function CartPage(): JSX.Element {
 							Items in your shopping cart
 						</h2>
 						{/* Cart Items */}
-						<Suspense>
-							<CartItems />
-						</Suspense>
+						<CartItems />
 					</section>
 					{/* Cart Summary */}
-					<Suspense>
-						<CartSummary />
-					</Suspense>
+					<CartSummary />
 				</form>
 			</main>
 		</div>
