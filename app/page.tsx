@@ -1,4 +1,4 @@
-import type { JSX } from 'react';
+import { Suspense, type JSX } from 'react';
 import { client } from '@/sanity/lib/client';
 import { groq } from 'next-sanity';
 
@@ -83,7 +83,9 @@ export default async function Home({
 							{products.length === 1 ? '' : 's'}
 						</h1>
 						{/* Product Sort */}
-						<ProductSort />
+						<Suspense>
+							<ProductSort />
+						</Suspense>
 					</div>
 
 					<section
@@ -106,7 +108,9 @@ export default async function Home({
 						>
 							<div className="hidden lg:block">
 								{/* Product filters */}
-								<ProductFilters />
+								<Suspense>
+									<ProductFilters />
+								</Suspense>
 							</div>
 							{/* Product grid */}
 							<ProductGrid products={products} />

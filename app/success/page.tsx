@@ -1,4 +1,4 @@
-import type { JSX } from 'react';
+import { Suspense, type JSX } from 'react';
 import Link from 'next/link';
 
 import { stripe } from '@/lib/stripe';
@@ -21,7 +21,9 @@ export default async function Page({
 		<main className="grid min-h-full place-items-center px-6 py-24 sm:py-32 lg:px-8">
 			<div className="text-center">
 				{/* Checkout session */}
-				<CheckoutSession customerDetails={customerDetails} />
+				<Suspense>
+					<CheckoutSession customerDetails={customerDetails} />
+				</Suspense>
 				<div className="mt-10 flex items-center justify-center gap-x-6">
 					<Link
 						href="/"
