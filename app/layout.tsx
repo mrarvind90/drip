@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 
 import '@/styles/globals.css';
 
-import React from 'react';
+import React, { Suspense } from 'react';
+import { Loader2 } from 'lucide-react';
 
 import { siteConfig } from '@/config/site';
 import { fontSans } from '@/lib/fonts';
@@ -34,7 +35,9 @@ export default function RootLayout({
 			>
 				<Providers>
 					<div className="relative flex min-h-screen flex-col">
-						<SiteHeader />
+						<Suspense fallback={<Loader2 />}>
+							<SiteHeader />
+						</Suspense>
 						<SiteBlob />
 						<div className="flex-1">{children}</div>
 						<SiteFooter />

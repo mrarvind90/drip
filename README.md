@@ -36,9 +36,13 @@ While the platform is already functional, there are a few areas that needs to be
 improved such as:-
 
 -   Improving the user flow in terms of adding product variants.
+-   Improve the way to handle pre-rendered client components - currently using a
+    hacky Suspense boundary with a loader icon
 -   Implementing a backend with database for storing products.
 -   Implementing logic for keeping track of stocks.
--   Other common features within an e-commerce web application.
+-   Explore other common features within an e-commerce web application.
+-   Improve the overall performance of the application by looking at ways to
+    minify CSS and JS
 
 ## Getting Started
 

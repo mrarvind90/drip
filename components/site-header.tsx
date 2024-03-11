@@ -26,7 +26,6 @@ export function SiteHeader(): JSX.Element | null {
 	if (pathname.startsWith('/studio')) return null;
 
 	const defaultSearchQuery: string = searchParams.get('search') ?? '';
-	console.log(defaultSearchQuery);
 
 	function onSubmit(event: React.SyntheticEvent<HTMLFormElement>) {
 		event.preventDefault();
